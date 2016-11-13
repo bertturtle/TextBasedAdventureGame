@@ -1,54 +1,61 @@
 package popupController;
 
 import java.awt.BorderLayout;
-import java.awt.HeadlessException;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import playerController.Main;
 
 public class ImprovedJFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton button1 = new JButton();
 	JButton button2 = new JButton();
 	JButton button3 = new JButton();
-	JLabel eventDescriptionLabel = new JLabel();
+	JTextArea eventDescriptionLabel = new JTextArea();
 
-	public ImprovedJFrame(String title, String eventDescription, String firstButtonText, String secondButtonText,
-			String thirdButtonText) {
+	public ImprovedJFrame(String title, String eventDescription) {
 		super(title);
-		setBounds(0, 0, 600, 400);
+		setBounds(0, 0, 1600, 1000);
 		setLayout(new BorderLayout());
-
+		setResizable(false);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		JPanel descriptionPanel = new JPanel();
 		eventDescriptionLabel.setText(eventDescription);
-		descriptionPanel.add(eventDescriptionLabel);
+		descriptionPanel.add(eventDescriptionLabel);  
+		eventDescriptionLabel.setLineWrap(true);
+		eventDescriptionLabel.setWrapStyleWord(true);
+		eventDescriptionLabel.setEditable(false);
+		eventDescriptionLabel.setBounds(10, 10, 1580, 980);
+		eventDescriptionLabel.setBackground(new Color(238, 238, 238));
+		
 		add(descriptionPanel, BorderLayout.NORTH);
-
+		
 		JPanel optionPanel = new JPanel();
-
-		button1.setText(firstButtonText);
-		button2.setText(secondButtonText);
-		button3.setText(thirdButtonText);
+		
+//		button1.setText(firstButtonText);
+//		button2.setText(secondButtonText);
+//		button3.setText(thirdButtonText);
 		
 		setOnClickListener();
-
+		
 		optionPanel.add(button1);
 		optionPanel.add(button2);
 		optionPanel.add(button3);
 
-		if (button3.getText().equals("")) {
-			button3.setVisible(false);
-		}
-
 		add(optionPanel);
-
+		
+		showDescriptiveDialog(eventDescription, false);
+		
 		setVisible(true);
 	}
 	
@@ -73,7 +80,7 @@ public class ImprovedJFrame extends JFrame {
 			}
 		});
 	}
-
+	
 	public void setText(String title, String eventDescription, String buttonOneText, String buttonTwoText,
 			String buttonThreeText) {
 		Main.buttonPressed = 0;
@@ -82,6 +89,8 @@ public class ImprovedJFrame extends JFrame {
 		button1.setText(buttonOneText);
 		button2.setText(buttonTwoText);
 		button3.setText(buttonThreeText);
+		button1.setVisible(true);
+		button2.setVisible(true);
 
 		if (button3.getText().equals("")) {
 			button3.setVisible(false);
@@ -90,12 +99,43 @@ public class ImprovedJFrame extends JFrame {
 		}
 	}
 	
-	public void gameEnd(String description)
+	public void showDescriptiveDialog(String description, boolean death)
 	{
-		button1.setVisible(false);
+		Main.buttonPressed = 0;
+		button1.setVisible(true);
 		button2.setVisible(false);
 		button3.setVisible(false);
 		
+		button1.setText("Okay");
+		
+		if (death)
+		{
+			button1.setText("Quit");
+			button1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setVisible(false);
+					dispose();
+				}
+			});
+		}
 		eventDescriptionLabel.setText(description);
+	}
+	
+	public void showFinalPart()
+	{
+		button1.setVisible(true);
+		button2.setVisible(false);
+		button3.setVisible(false);
+		
+		eventDescriptionLabel.setText("RIP Harambe");
+		
+		button1.setText("RIP Harambe");
+		button1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 	}
 }

@@ -74,6 +74,7 @@ public class GenericSituation {
 		if (commandUsed != null)
 		{
 			commandUsed.useCommand();
+			scanner.close();
 			return possibleCommands.indexOf(commandUsed) + 1;
 		}
 		else
@@ -89,6 +90,7 @@ public class GenericSituation {
 				commandUsed = checkCommand(command);
 			}
 			commandUsed.useCommand();
+			scanner.close();
 			return possibleCommands.indexOf(commandUsed) + 1;
 		}
 	}
