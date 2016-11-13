@@ -25,7 +25,7 @@ public class Main {
 	public static void main(String[] args) {
 		String title = "Adventure of a Lifetime";
 		
-		ImprovedJFrame adventureDialog = new ImprovedJFrame("Title", "You run into a gorilla", "Let's fight the gorilla", "Talk to the gorilla", "Give him one of your delicious bananas");
+		ImprovedJFrame adventureDialog = new ImprovedJFrame(title, "You run into a gorilla", "Let's fight the gorilla", "Talk to the gorilla", "Give him one of your delicious bananas");
 		
 		while(buttonPressed == 0)
 		{
