@@ -1,14 +1,18 @@
 package playerCommands;
 
+import playerResources.CommandActions;
+
 public class GenericCommand {
 
 	String name;
 	String altName;
+	CommandActions commandActions;
 
-	public GenericCommand(String name, String altName) {
+	public GenericCommand(String name, String altName, CommandActions commandActions) {
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.altName = altName;
+		this.commandActions = commandActions;
 	}
 
 	public String getName() {
@@ -33,5 +37,10 @@ public class GenericCommand {
 				return false;
 			}
 		}
+	}
+	
+	public void useCommand()
+	{
+		commandActions.activateCommandActions();
 	}
 }

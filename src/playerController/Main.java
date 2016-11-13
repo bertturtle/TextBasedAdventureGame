@@ -1,10 +1,30 @@
 package playerController;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import playerCommands.GenericCommand;
+import playerResources.CommandActions;
+import playerResources.GenericResource;
+import playerSituations.GenericSituation;
+
 public class Main {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 	
+	static GenericResource banana;
+	
+	public static void main(String[] args) {
+		
+		banana = new GenericResource("Banana", 5, "");
+		
+		List<GenericResource> resources = new ArrayList<GenericResource>();
+		resources.add(banana);
+		
+		List<Integer> resourceChange = new ArrayList<Integer>();
+		resourceChange.add(-4);
+		
+		List<GenericCommand> possibleActions = new ArrayList<GenericCommand>();
+		possibleActions.add(new GenericCommand("Test", "Test2", new CommandActions(resources, resourceChange)));
+		GenericSituation situation = new GenericSituation("You run into a gorrila", possibleActions);
+		situation.startSituation();
+	}
 }
