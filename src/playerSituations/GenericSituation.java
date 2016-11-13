@@ -64,7 +64,7 @@ public class GenericSituation {
 		return commandList;
 	}
 	
-	public void startSituation()
+	public int startSituation()
 	{
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(description);
@@ -74,7 +74,7 @@ public class GenericSituation {
 		if (commandUsed != null)
 		{
 			commandUsed.useCommand();
-			return;
+			return possibleCommands.indexOf(commandUsed) + 1;
 		}
 		else
 		{
@@ -89,6 +89,7 @@ public class GenericSituation {
 				commandUsed = checkCommand(command);
 			}
 			commandUsed.useCommand();
+			return possibleCommands.indexOf(commandUsed) + 1;
 		}
 	}
 }
