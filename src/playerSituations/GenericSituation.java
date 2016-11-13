@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import playerCommands.GenericCommand;
+import playerController.Main;
 
 public class GenericSituation {
 	
@@ -31,7 +32,36 @@ public class GenericSituation {
 				return possibleCommands.get(i);
 			}
 		}
+		if (command.equals("help"))
+		{
+			System.out.println("You can" + getCommandList());
+		}
+		else if (command.equals("resources"))
+		{
+			System.out.println("You Have:");
+			for(int i = 0; i < Main.resourceList.size(); i++)
+			{
+				System.out.println(Main.resourceList.get(i).getResourceDescription());
+			}
+		}
 		return null;
+	}
+	
+	public String getCommandList()
+	{
+		String commandList = "";
+		for (int i = 0; i < possibleCommands.size(); i++)
+		{
+			if (i == possibleCommands.size() - 1 && possibleCommands.size() != 1)
+			{
+				commandList += ", or " + possibleCommands.get(i).getName();
+			}
+			else
+			{
+				commandList += ", " + possibleCommands.get(i).getName();
+			}
+		}
+		return commandList;
 	}
 	
 	public void startSituation()
@@ -49,7 +79,10 @@ public class GenericSituation {
 		{
 			while (commandUsed == null)
 			{
-				System.out.println("That is not a valid command");
+				if (!command.equals("help") && !command.equals("resources"))
+				{
+					System.out.println("That is not a valid command");
+				}
 				command = scanner.next();
 				commandUsed = checkCommand(command);
 			}

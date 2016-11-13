@@ -1,5 +1,7 @@
 package playerResources;
 
+import playerController.Main;
+
 public class GenericResource {
 	
 	String name;
@@ -11,6 +13,7 @@ public class GenericResource {
 		this.name = name;
 		this.quantity = startingQuantity;
 		this.unitOfMeasurement = unitOfMeasurment;
+		Main.resourceList.add(this);
 	}
 	
 	public int getResourceQuantity()
@@ -53,7 +56,26 @@ public class GenericResource {
 		}
 		else
 		{
-			return quantity + " " + unitOfMeasurement + " of " + name + ".";
+			return quantity + " " + unitOfMeasurement + " of " + name + "s.";
+		}
+	}
+	
+	public String getCustomResourceDescription(int value)
+	{
+		if (unitOfMeasurement.equals(""))
+		{
+			if (value == 1)
+			{
+				return value + " " + name + ".";
+			}
+			else
+			{
+				return value + " " + name + "s.";
+			}
+		}
+		else
+		{
+			return value + " " + unitOfMeasurement + " of " + name + "s.";
 		}
 	}
 }

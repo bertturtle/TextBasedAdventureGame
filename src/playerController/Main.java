@@ -11,16 +11,16 @@ import playerSituations.GenericSituation;
 public class Main {
 	
 	static GenericResource banana;
+	public static List<GenericResource> resourceList = new ArrayList<GenericResource>();
 	
 	public static void main(String[] args) {
-		
 		banana = new GenericResource("Banana", 5, "");
 		
 		List<GenericResource> resources = new ArrayList<GenericResource>();
 		resources.add(banana);
 		
 		List<Integer> resourceChange = new ArrayList<Integer>();
-		resourceChange.add(-4);
+		resourceChange.add(3);
 		
 		List<GenericCommand> possibleActions = new ArrayList<GenericCommand>();
 		possibleActions.add(new GenericCommand("Test", "Test2", new CommandActions(resources, resourceChange)));
