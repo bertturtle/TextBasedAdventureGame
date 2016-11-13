@@ -23,7 +23,7 @@ public class Main {
 		resourceChange.add(3);
 		
 		List<GenericCommand> possibleActions = new ArrayList<GenericCommand>();
-		possibleActions.add(new GenericCommand("Test", "Test2", new CommandActions(resources, resourceChange)));
+		possibleActions.add(new GenericCommand("talk to gorrila", "talk", new CommandActions(resources, resourceChange), "You talk to the gorilla and he gives you some bananas."));
 		GenericSituation situation = new GenericSituation("You run into a gorrila", possibleActions);
 		situation.startSituation();
 	}

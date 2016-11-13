@@ -49,10 +49,10 @@ public class GenericSituation {
 	
 	public String getCommandList()
 	{
-		String commandList = "";
+		String commandList = " use resources";
 		for (int i = 0; i < possibleCommands.size(); i++)
 		{
-			if (i == possibleCommands.size() - 1 && possibleCommands.size() != 1)
+			if (i == possibleCommands.size() - 1)
 			{
 				commandList += ", or " + possibleCommands.get(i).getName();
 			}
@@ -69,6 +69,7 @@ public class GenericSituation {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(description);
 		String command = scanner.next();
+		command = command.toLowerCase();
 		GenericCommand commandUsed = checkCommand(command);
 		if (commandUsed != null)
 		{
@@ -81,9 +82,10 @@ public class GenericSituation {
 			{
 				if (!command.equals("help") && !command.equals("resources"))
 				{
-					System.out.println("That is not a valid command");
+					System.out.println("That is not a valid command. Type help for a list of commands.");
 				}
 				command = scanner.next();
+				command = command.toLowerCase();
 				commandUsed = checkCommand(command);
 			}
 			commandUsed.useCommand();

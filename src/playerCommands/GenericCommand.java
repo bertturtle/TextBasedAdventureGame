@@ -7,12 +7,14 @@ public class GenericCommand {
 	String name;
 	String altName;
 	CommandActions commandActions;
+	String commandDescription;
 
-	public GenericCommand(String name, String altName, CommandActions commandActions) {
+	public GenericCommand(String name, String altName, CommandActions commandActions, String commandDescription) {
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.altName = altName;
 		this.commandActions = commandActions;
+		this.commandDescription = commandDescription;
 	}
 
 	public String getName() {
@@ -41,6 +43,7 @@ public class GenericCommand {
 	
 	public void useCommand()
 	{
+		System.out.println(commandDescription);
 		commandActions.activateCommandActions();
 	}
 }
